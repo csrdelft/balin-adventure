@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>C.S.R.-Courant</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="author" content="PubCie der C.S.R. Delft"/>
+    <meta name="robots" content="index, follow"/>
+  </head>
+  <body>
+  <ul>
+      {% for entry in entries %}
+      <li><a href="#{{ entry.id }}"></a></li>
+      {% endfor %}
+  </ul>
+  {% for entry in entries %}
+  <h4><a name="{{ entry.id }}"></a>{{ entry.title }}</h4>
+  <p>{{ entry.text }}</p>
+  {% endfor %}
+  </body>
+</html>
