@@ -9,7 +9,7 @@ import livefield.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('base', '0011_auto_20150708_1923'),
+        ('base', '0010_optional_fields_fixes'),
     ]
 
     operations = [
