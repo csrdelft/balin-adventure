@@ -84,8 +84,8 @@ class LegacyProfiel(Model):
     else:
       return "Ama. %s" % self.achternaam
 
-class Accounts(Model):
-  uid = CharField(max_length=4, primary_key=True)
+class LegacyAccounts(Model):
+  user = ForeignKey(db_column='uid', primary_key=True)
   username = CharField(unique=True, max_length=255)
   email = CharField(max_length=255)
   pass_hash = CharField(max_length=255)
@@ -102,3 +102,41 @@ class Accounts(Model):
     managed = False
     db_table = 'accounts'
 
+class LegacyCourant(Model):
+  id = IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+  verzendmoment = DateTimeField(db_column='verzendMoment')  # Field name made lowercase.
+  template = CharField(max_length=50)
+  verzender = ForeignKey('Profielen', db_column='verzender')
+
+  class Meta:
+    managed = False
+    db_table = 'courant'
+
+
+class LegacyCourantbericht(Model):
+  id = AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+  courantid = IntegerField(db_column='courantID')  # Field name made lowercase.
+  titel = CharField(max_length=100)
+  cat = CharField(max_length=9)
+  bericht = TextField()
+  volgorde = IntegerField()
+  user = ForeignKey(LegacyProfiel, db_column='uid', null=True)
+  datumtijd = DateTimeField(db_column='datumTijd')  # Field name made lowercase.
+
+  class Meta:
+    managed = False
+    db_table = 'courantbericht'
+
+
+class Courantcache(Model):
+  id = AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+  titel = CharField(max_length=100)
+  cat = CharField(max_length=9)
+  bericht = TextField()
+  user = ForeignKey(LegacyProfiel, db_column='uid', null=True)
+  datumtijd = DateTimeField(db_column='datumTijd')  # Field name made lowercase.
+  volgorde = IntegerField()
+
+  class Meta:
+    managed = False
+    db_table = 'courantcache'

@@ -4,6 +4,7 @@ from django.contrib import admin
 import base.views, base.api
 import forum.views, forum.api
 import mededelingen.api
+import courant.api
 import maaltijden.views, maaltijden.api
 import legacy.views
 
@@ -22,6 +23,7 @@ api_urls = patterns('',
   url(r'^', include(base.api.urls)),
   url(r'^', include(router.urls)),
   url(r'^', include(forum.api.urls)),
+  url(r'^', include(courant.api.urls)),
   url(r'^docs/', include('rest_framework_swagger.urls')),
 )
 

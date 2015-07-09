@@ -62,7 +62,8 @@ INSTALLED_APPS = (
     'base',
     'forum',
     'maaltijden',
-    'mededelingen'
+    'mededelingen',
+    'courant'
 )
 
 MIDDLEWARE_CLASSES = (
