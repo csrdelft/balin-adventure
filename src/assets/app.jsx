@@ -2,7 +2,12 @@ let React = require("react");
 let $ = require("jquery");
 let _ = require("underscore");
 
-let api = require("api");
+var api = require("api");
+var ForumThreadList = require("forum/ForumThreadList");
+var PostForm = require("forum/PostForm");
+var ProfielLink = require("groepen/ProfielLink");
+
+var ProfielRouter = require('groepen/ProfielRouter');
 let Profiel = require("groepen/Profiel");
 let ForumRouter = require("forum/Router");
 let MededelingRouter = require('mededelingen/MededelingRouter');
@@ -61,7 +66,7 @@ class Menu extends React.Component {
           <Link to="/">Thuis</Link>
           <Link to="/groepen">Groepen</Link>
           <Link to="/mededelingen">Mededelingen</Link>
-          <Link to="/profiel/1337">Profiel</Link>
+          <Link to="profiel-detail" params={{pk: 1337}}>Profiel</Link>
           <Link to="/forum">Reformaforum ({ this.state.forum_notifications })</Link>
         </div>
       </div>
@@ -107,8 +112,8 @@ let routes = (
   <Route path="/" handler={App}>
     <Route path="" handler={NotFound} />
     <Route path="forum">{ForumRouter}</Route>
-    <Route path="profiel/:pk" handler={Profiel} />
     <Route path="mededelingen">{MededelingRouter}</Route>
+    <Route path="profiel">{ProfielRouter}</Route>
     <Route path="*" handler={NotFound} />
   </Route>
 );
